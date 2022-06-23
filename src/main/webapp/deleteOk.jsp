@@ -1,21 +1,19 @@
-<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입 완료</title>
+<title>회원탈퇴</title>
 </head>
 <body>
 	<%
 		request.setCharacterEncoding("utf-8");
 		
 		String mid = request.getParameter("userID");
-		String mpw = request.getParameter("userPW");
-		String memail = request.getParameter("userEmail");
 		
-		String sql = "insert into members(id, password, email) values ('"+ mid +"','" + mpw +"','" + memail + "')";
+		String sql = "delete from members where id='"+mid+"'";
 		
 		String driverName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/odbo";
@@ -33,10 +31,11 @@
 			int resultCheck = stmt.executeUpdate(sql);
 			
 			if(resultCheck == 1){
-				out.println("회원가입성공");
+				//out.println("회원가입성공");
+				response.sendRedirect("memberlist.jsp");
 			}
 			else{
-				out.println("회원가입실패");
+				out.println("회원탈퇴실패");
 			}
 			
 		
