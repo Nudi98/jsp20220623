@@ -30,7 +30,7 @@
 		try{
 			Class.forName(driverName);
 			conn = DriverManager.getConnection(url, username, password);
-			Statement stmt = conn.createStatement()();
+			Statement stmt = conn.createStatement();
 			
 			int resultCheck = stmt.executeUpdate(sql);
 			
